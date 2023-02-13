@@ -1,4 +1,7 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
+import routes from './router.config'
 
-Vue.use(VueRouter)
+export const router = createRouter({
+    history: createWebHistory('/'),
+    routes
+})

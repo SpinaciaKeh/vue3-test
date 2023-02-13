@@ -1,7 +1,17 @@
-import { defineConfig } from 'vite'
+import { ConfigEnv, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue()],
-})
+export default ({ command, mode }: ConfigEnv): UserConfig => {
+    console.log(command, mode)
+
+    return {
+        //...
+        plugins: [
+            vue()
+        ]
+    }
+}
+
+// export default defineConfig({
+//
+// })
