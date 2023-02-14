@@ -1,10 +1,10 @@
 import { RouteRecordRaw } from 'vue-router'
 
-export const defaultRoutes: RouteRecordRaw[] = [
+const routes: RouteRecordRaw[] = [
     {
         path: '/login',
         name: 'login',
-        component: () => import('../views/login/login.vue'),
+        component: () => import('../views/login/index.vue'),
         meta: {
             title: '登录',
             icon: 'login-icon'
@@ -13,14 +13,14 @@ export const defaultRoutes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'home',
-        component: () => import('../views/home/home.vue'),
+        component: () => import('../views/home/index.vue'),
         meta: {
             title: '首页',
             icon: 'home-icon'
         }
     },
     {
-        path: '/:pathMatch(.*)',
+        path: '/:pathMatch(.*)*',
         redirect: '/404'
     },
     {
@@ -29,4 +29,4 @@ export const defaultRoutes: RouteRecordRaw[] = [
     }
 ]
 
-export default defaultRoutes
+export default routes

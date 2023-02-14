@@ -8,7 +8,15 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         //...
         plugins: [
             vue()
-        ]
+        ],
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    additionalData: `@import "./src/style/common.scss";`,
+                    javascriptEnabled: true
+                }
+            }
+        }
     }
 }
 

@@ -8,7 +8,7 @@ the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-scrip
 
 - 脚手架 `Vite`
 - 前端框架 `Vue3`
-- 状态管理器 `Pinia`
+- 状态管理 `Pinia`
 - 脚本语言 `TypeScript`
 - CSS预处理 `Sass`
 - UI框架 `Element Plus`
@@ -22,7 +22,8 @@ the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-scrip
 ├─assets // 静态文件
 ├─components // 组件
 ├─router // 路由
-├─store // 全局状态管理
+├─store // 状态管理
+├─style // 公共样式
 ├─utils // 公共方法
 └─views // 页面
 ```
