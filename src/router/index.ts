@@ -9,6 +9,10 @@ const router = createRouter({
 const whiteList = ['/login']
 
 router.beforeEach((to, from, next) => {
+    if (to.meta.title) {
+        document.title = (to.meta.title as string) || import.meta.env.VITE_APP_TITLE
+    }
+
     const hasToken = sessionStorage.getItem('authToken')
     if (hasToken) {
         if (to.path === '/login') {
