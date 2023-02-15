@@ -39,6 +39,7 @@ service.interceptors.response.use(response => {
     hideLoading()
     const code = response.data['code'] || 200
     const msg = response.data['msg'] || 'something wrong'
+    // do something here ...
     if (code === 200) {
         return Promise.resolve(response.data)
     } else {
@@ -46,6 +47,7 @@ service.interceptors.response.use(response => {
     }
 }, error => {
     hideLoading()
+    // more operations required here
     return Promise.reject(error)
 })
 

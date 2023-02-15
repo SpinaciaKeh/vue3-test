@@ -12,7 +12,7 @@ export function login(username: string, password: string, code: string, uuid: st
     })
 }
 
-// Register
+// Register, what does 'data' contain?
 export function register(data: any) {
     return service({
         url: '/register',

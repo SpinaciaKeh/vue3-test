@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import routes from './router.config'
+import { useUserStore } from '../store/userStore'
 
 const router = createRouter({
     history: createWebHistory('/'),
@@ -13,7 +14,8 @@ router.beforeEach((to, from, next) => {
         document.title = (to.meta.title as string) || import.meta.env.VITE_APP_TITLE
     }
 
-    const hasToken = sessionStorage.getItem('authToken')
+    const userStore = useUserStore()
+    const hasToken = userStore.token || sessionStorage.getItem('authToken')
     if (hasToken) {
         if (to.path === '/login') {
             next({ path: '/' })

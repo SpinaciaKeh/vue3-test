@@ -15,7 +15,7 @@ for (const [key, component] of Object.entries(ElIcons)) {
 }
 
 app.use(ElementPlus, { locale })
-app.use(router)
 app.use(store)
+app.use(router)
 
 app.mount('#app')

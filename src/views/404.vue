@@ -1,7 +1,6 @@
 <template>
   <div>
     <span class="wrong-info">404 Not Found!</span>
-    <span class="wrong-info">{{ testData }}</span>
     <el-button class="btn" @click="goBack">back home</el-button>
   </div>
 </template>
@@ -13,8 +12,6 @@ const route = useRouter()
 const goBack = () => {
   route.push('/')
 }
-
-const testData = import.meta.env
 </script>
 
 <style scoped lang="scss">

@@ -3,8 +3,8 @@
     <div class="login-box">
       <span class="page-title">
         Vue3 Test
+        <span class="test-btn" @click="testFunc">⚪</span>
       </span>
-      <p style="opacity:1;" @click="testFunc">⚪</p>
       <el-form ref="loginFormRef" :model="loginForm" :rules="rules" label-width="80px"
                class="login-ruleForm" status-icon>
         <el-form-item label="username" prop="username">
@@ -29,33 +29,32 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { onMounted, reactive, ref } from 'vue'
+<script setup lang="ts">
+import { reactive, ref } from 'vue'
 import type { FormInstance, FormRules } from 'element-plus'
+import { ElMessage } from 'element-plus'
+import { getCodeImg, login as userApiLogin } from '../../api/userApi'
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '../../store/authStore'
-import { getCodeImg } from '../../api/userApi'
+import { encrypt } from '../../utils/rsa'
+import { Md5 } from 'ts-md5'
+import { useUserStore } from '../../store/userStore'
 
-const route = useRouter()
-const authStore = useAuthStore()
-let codeImg = ref()
-
-onMounted(() => {
-  refreshCode()
-})
-
+// load & refresh verification code image
+let codeImg = ref<string>()
 const refreshCode = () => {
   getCodeImg().then((res: any) => {
     const { img, uuid } = res
-    codeImg = img
+    codeImg.value = img
     loginForm.uuid = uuid
   })
 }
+refreshCode()
 
+// login form init
 const loginFormRef = ref<FormInstance>()
 const loginForm = reactive({
-  username: '',
-  password: '',
+  username: '--toolbox-right',
+  password: 'admin123',
   code: '',
   uuid: ''
 })
@@ -73,20 +72,36 @@ const rules = reactive<FormRules>({
   ]
 })
 
+// login function
+const route = useRouter()
+const userStore = useUserStore()
 const login = async (form: FormInstance | undefined) => {
   if (!form) return
-  await form.validate((valid, fields) => {
+  await form.validate((valid) => {
     if (valid) {
-      sessionStorage.setItem('authToken', 'test-token')
-      const { username, password, code, uuid } = loginForm
-      authStore.login(username, password, code, uuid)
-      route.push({ path: '/' })
+      let { username, password, code, uuid } = loginForm
+      password = <string>encrypt(Md5.hashStr(password))
+      userApiLogin(username, password, code, uuid).then((res: any) => {
+        const { token } = res
+        userStore.token = token
+        sessionStorage.setItem('authToken', token)
+        route.push({ path: '/' })
+        ElMessage.success('login successfully')
+      }).catch((err) => {
+        ElMessage.error('invalid information ', err)
+        refreshCode()
+      })
     } else {
-      console.log('failed to login', fields)
+      ElMessage.error('incomplete information')
+      refreshCode()
     }
   })
 }
+const register = async () => {
+  // ...
+}
 
+// test data
 const testFunc = () => {
   console.log(codeImg)
 }
@@ -112,6 +127,11 @@ const testFunc = () => {
       margin-bottom: 10px;
       display: block;
       font-size: 18px;
+
+      .test-btn {
+        position: absolute;
+        opacity: 0;
+      }
     }
 
     .login-ruleForm {
