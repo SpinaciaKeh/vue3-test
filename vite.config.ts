@@ -6,6 +6,7 @@ import Components from 'unplugin-vue-components/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { fileURLToPath, URL } from 'url'
 
 const pathSrc = resolve(__dirname, 'src')
 
@@ -44,7 +45,7 @@ export default defineConfig((env) => {
         resolve: {
             extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
             alias: {
-                '@': pathSrc
+                '@': fileURLToPath(new URL('./src', import.meta.url))
             }
         },
         server: {
