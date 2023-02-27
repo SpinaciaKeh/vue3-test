@@ -74,6 +74,9 @@
           </text>
         </a>
       </svg>
+      <div class="button-list">
+        <router-link to="/cesium">cesium</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -174,16 +177,17 @@ const testData = () => {
     height: 100vh;
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 1;
 
-    .cls-1 {
-      fill: none;
-      stroke: #23736a;
-      stroke-width: 2;
-      stroke-opacity: 0.5;
-    }
+    //.cls-1 {
+    //  fill: none;
+    //  stroke: #23736a;
+    //  stroke-width: 2;
+    //  stroke-opacity: 0.5;
+    //}
   }
 }
 </style>

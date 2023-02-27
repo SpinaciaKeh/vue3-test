@@ -20,6 +20,11 @@ const routes: RouteRecordRaw[] = [
         }
     },
     {
+        path: '/cesium',
+        name: 'cesium',
+        component: () => import('../views/cesium/index.vue')
+    },
+    {
         path: '/:pathMatch(.*)*',
         redirect: '/404'
     },

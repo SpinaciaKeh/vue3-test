@@ -7,6 +7,7 @@ import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import { fileURLToPath, URL } from 'url'
+import cesium from 'vite-plugin-cesium'
 
 const pathSrc = resolve(__dirname, 'src')
 
@@ -17,8 +18,8 @@ export default defineConfig((env) => {
     return {
         base: viteEnv.VITE_BASE,
         plugins: [
-            // ...
             vue(),
+            cesium(),
             AutoImport({
                 imports: ['vue'],
                 resolvers: [

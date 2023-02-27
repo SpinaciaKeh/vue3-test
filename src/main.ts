@@ -7,6 +7,8 @@ import locale from 'element-plus/lib/locale/lang/zh-cn'
 import * as ElIcons from '@element-plus/icons-vue'
 import router from './router'
 import store from './store'
+// import * as Cesium from 'cesium'
+// import 'cesium/Build/Cesium/Widgets/widgets.css'
 
 const app = createApp(App)
 
@@ -17,5 +19,6 @@ for (const [key, component] of Object.entries(ElIcons)) {
 app.use(ElementPlus, { locale })
 app.use(store)
 app.use(router)
+// app.provide('$Cesium', Cesium)
 
 app.mount('#app')
