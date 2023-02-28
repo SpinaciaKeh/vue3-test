@@ -16,9 +16,18 @@
     "paths": {},
     "types": [
       "node",
-      "vite/client"
+      "vite/client",
+      "vue-cesium/global",
+      "vue-cesium/Cesium"
     ]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "node_modules/vue-cesium/Cesium.d.ts",
+    "node_modules/vue-cesium/global.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

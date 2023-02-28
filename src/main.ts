@@ -8,7 +8,9 @@ import * as ElIcons from '@element-plus/icons-vue'
 import router from './router'
 import store from './store'
 // import * as Cesium from 'cesium'
-// import 'cesium/Build/Cesium/Widgets/widgets.css'
+import 'cesium/Build/Cesium/Widgets/widgets.css'
+import * as VueCesium from 'vue-cesium'
+import 'vue-cesium/dist/index.css'
 
 const app = createApp(App)
 
@@ -20,5 +22,6 @@ app.use(ElementPlus, { locale })
 app.use(store)
 app.use(router)
 // app.provide('$Cesium', Cesium)
+app.provide('$VueCesium', VueCesium)
 
 app.mount('#app')

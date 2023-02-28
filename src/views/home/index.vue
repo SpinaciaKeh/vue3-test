@@ -1,7 +1,7 @@
 <template>
   <div class="home-box">
     <div class="navbar-top">
-      <span class="user-role">{{ userStore.user_role }}</span>
+      <span class="user-role" @click="num++">{{ num }} # {{ userStore.user_role }}</span>
       <span class="user-nickname" @click="testData">Hello, {{ userStore.user_nickname }}</span>
       <el-button class="btn-logout" @click="logout">logout</el-button>
     </div>
@@ -77,6 +77,9 @@
       <div class="button-list">
         <router-link to="/cesium">cesium</router-link>
       </div>
+      <div>
+        <test-provide/>
+      </div>
     </div>
   </div>
 </template>
@@ -87,6 +90,7 @@ import { getInfo as userApiGetInfo, logout as userApiLogout } from '../../api/us
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '../../store/userStore'
 import { reactive, ref } from 'vue'
+import TestProvide from './components/TestProvide/TestProvide.vue'
 
 // logout function
 const route = useRouter()
@@ -134,6 +138,10 @@ const testData = () => {
   console.log('testVariable.value', testVariable.value)
 }
 
+let num = ref<number>(1)
+provide('num', num)
+
+// interface
 </script>
 
 <style scoped lang="scss">

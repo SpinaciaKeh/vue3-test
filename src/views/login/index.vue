@@ -2,7 +2,7 @@
   <div class="page">
     <div class="login-box">
       <span class="page-title">
-        Vue3 Test
+        Vue3 Demo
         <span class="test-btn" @click="testFunc">⚪</span>
       </span>
       <el-form ref="loginFormRef" :model="loginForm" :rules="rules" label-width="80px"
